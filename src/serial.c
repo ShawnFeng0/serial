@@ -211,9 +211,9 @@ static int set_parity(int fd) {
 }
 
 // Open a serial port
-int serial_open(char *dev_path, int speed, int is_block) {
-  int flag = O_RDWR;                      // read and write
-  if (is_block == 0) flag |= O_NONBLOCK;  // block or nonblock
+int open_serial(const char *dev_path, int speed, int block) {
+  int flag = O_RDWR;               // read and write
+  if (!block) flag |= O_NONBLOCK;  // block or nonblock
 
   int fd = open(dev_path, flag);
   if (fd < 0) {
