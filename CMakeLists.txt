@@ -8,10 +8,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 option(${PROJECT_NAME}_build_examples "Build examples" OFF)
 
-include_directories(include)
-
 # library
 add_library(${PROJECT_NAME} src/serial.c)
+target_include_directories(${PROJECT_NAME} PUBLIC include)
 
 if (${PROJECT_NAME}_build_examples)
     add_subdirectory(examples)
